@@ -23,12 +23,11 @@
 			<artifactId>mybatis</artifactId>
 			<version>3.5.0</version>
 			<scope>compile</scope>
-			<!--scope default : compile - test - build -deploy
-			 1.test : test과정까지만 
-				필요한 dependency(ex:junit) 실재 bulid할 땐 메이븐이 알아서 이 부분은 제거함 
-				2.compile : 배포까지  dependency 유지 
-				3.provided : 운영환경에서 제공되기 떄문에 배포할 필요없는 dependency ex)servlet tomcat이 기동될 때 이미 배포됨. 
-				4.system : maven central repository에서 모든 lib 를 제공하지 않기 때문에 -->
+			<!--scope default : compile - test - build -deploy 1.test : test과정까지만 
+				필요한 dependency(ex:junit) 실재 bulid할 땐 메이븐이 알아서 이 부분은 제거함 2.compile : 배포까지 
+				dependency 유지 3.provided : 운영환경에서 제공되기 떄문에 배포할 필요없는 dependency ex)servlet 
+				tomcat이 기동될 때 이미 배포됨. 4.system : maven central repository에서 모든 lib 를 제공하지 
+				않기 때문에 -->
 		</dependency>
 
 		<dependency>
@@ -37,17 +36,26 @@
 			<version>12.1.0.2</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<repositories>
 
-		<!-- ojdbc6 설정시 --> <!-- 운영maven에 우리가 원하는 ojdbc가 없기때문에 nexus서버에 있는 걸  등록함 -->
+		<!-- ojdbc6 설정시 --> <!-- 운영maven에 우리가 원하는 ojdbc가 없기때문에 nexus서버에 있는 걸 등록함 -->
 		<repository>
 			<id>codelds</id>
 			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
 		</repository>
 	</repositories>
-	
+
 	<build>
 		<plugins>
 			<plugin>
