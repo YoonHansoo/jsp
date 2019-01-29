@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+  <select id="getAllUser" resultType="UserVo">
+    select *
+      from users  <!-- ibatis에서는 #userId#    mybatis는 #{userId} -->
+  </select>
+  
+  
+	<!-- 특정 사용자 조회(userId) query,dao(test), service(test) 
+		  [메서드 명: selectUser(String userId) ] -->
+		  
+ <select id="selectUser" parameterType="String" resultType="UserVo">
+ 	select USERID,
+ 		   USERNM,
+ 		   PASS,
+ 		   REG_DT
+ 	  from USERS
+ 	 WHERE USERID = #{userId}
+ </select>
+</mapper>
