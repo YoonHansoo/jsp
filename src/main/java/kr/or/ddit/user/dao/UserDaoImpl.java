@@ -9,6 +9,7 @@ import com.sun.org.apache.regexp.internal.recompile;
 
 import kr.or.ddit.db.mybatis.MybatisSqlSessionFactory;
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.util.model.PageVo;
 
 public class UserDaoImpl implements IUserDao {
 
@@ -33,5 +34,38 @@ public class UserDaoImpl implements IUserDao {
 		UserVo userVo = sqlSessin.selectOne("user.selectUser", userId);  //Ibatis에서 queryForObject와 비슷함
 		sqlSessin.close();//사용한 sqlSessin 객체 반납 
 		return userVo;
+	}
+
+	/**
+	 * Method : selectUserPagingList
+	 * 작성자 : Hansoo
+	 * 변경이력 :
+	 * @param pageVo
+	 * @return
+	 * Method 설명 :사용자 페이징 리스트 조회
+	 */
+	@Override
+	public List<UserVo> selectUserPagingList(PageVo pageVo) {
+		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
+		SqlSession sqlSessin = sqlSessionFactory.openSession();
+		 List<UserVo> list = sqlSessin.selectList("user.selectUserPagingList", pageVo);  //Ibatis에서 queryForObject와 비슷함
+		sqlSessin.close();//사용한 sqlSessin 객체 반납 
+		return list;
+	}
+
+	/**
+	 * Method : getUserCnt
+	 * 작성자 : Hansoo
+	 * 변경이력 :
+	 * @return
+	 * Method 설명 : 전체 사용자 수 조회
+	 */
+	@Override
+	public int getUserCnt() {
+			SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
+			SqlSession openSession = sqlSessionFactory.openSession();
+			int  userCnt = openSession.selectOne("user.getUserCnt");
+			openSession.close();
+		return userCnt;
 	}
 }

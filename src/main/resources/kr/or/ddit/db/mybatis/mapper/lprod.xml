@@ -12,8 +12,22 @@
 	</select>
 
 
-	<!-- 특정 사용자 조회(userId) query,dao(test), service(test) [메서드 명: selectUser(String 
-		userId) ] -->
 
+   <!-- 전체 Lprod 수 조회 -->
+<select id="getLprodCnt" resultType="Integer">
+	SELECT COUNT(*) 
+	  FROM LPROD
+</select>
 
+<select id="selectLprodPagingList" parameterType="pageVo" resultType="LprodVo">
+
+	SELECT *
+	  FROM	(SELECT a.*
+			      , ROWNUM RN
+		       FROM
+				    (select LPROD.*
+				       FROM LPROD
+			       ORDER BY LPROD_ID) a)a
+   	WHERE RN BETWEEN (#{page}*#{pageSize})- (#{pageSize}-1) and (#{page}*#{pageSize}) 
+</select>
 </mapper>

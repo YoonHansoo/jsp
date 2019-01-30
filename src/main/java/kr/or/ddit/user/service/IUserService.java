@@ -1,8 +1,10 @@
 package kr.or.ddit.user.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.util.model.PageVo;
 
 public interface IUserService {
 
@@ -13,7 +15,9 @@ public interface IUserService {
 	 * @return
 	 * Method 설명 : 전체 사용자 정보 조회
 	 */
-	List<UserVo> getAllUser();
+	public List<UserVo> getAllUser();
 	
 	public UserVo selectUser(String userId);
+	
+	Map<String,Object> selectUserPagingList(PageVo pageVo);
 }
