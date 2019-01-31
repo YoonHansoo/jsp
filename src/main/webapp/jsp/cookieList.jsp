@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,21 +21,19 @@
 	// 5.request.getRequestDispatcher("/jsp/cookieList.jsp").forwared(request,response);
 	
 	
-	
 	%>
 	<h3>session</h3>
-	session.getId() : <%= session.getId() %>
-	
+	session.getId() :
+	<%= session.getId() %>
+
 	<h3>서버 사이드 cookie 생성</h3>
-	
+
 	<%
 		Cookie newCookie = new Cookie("serverSideCookie", "serverSideCookie");
 		newCookie.setMaxAge(60*60*24*5); //setMaxAge는 초 단위 값을 인자로 받는다 .
 		response.addCookie(newCookie);
-		
-		
 	%>
-		 
-	
+
+
 </body>
 </html>
