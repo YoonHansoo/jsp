@@ -6,19 +6,15 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class CookieUtil {
-	private String cookieString;
 	ArrayList<Map<String, String>> splitStringList;
 
 	public CookieUtil() {
 	};
 
 	public CookieUtil(String cookieStirng) {
-		if (splitStringList == null) {
-			splitStringList = new ArrayList<>();
-		}
-		this.cookieString = cookieStirng;
-
-		String[] splitString = this.cookieString.split(";");
+		
+		splitStringList = new ArrayList<>();
+		String[] splitString = cookieStirng.split(";");
 		for (int i = 0; i < splitString.length; i++) {
 			String[] cookiesValue = splitString[i].split("=");
 
@@ -53,3 +49,4 @@ public class CookieUtil {
 	}
 
 }
+
