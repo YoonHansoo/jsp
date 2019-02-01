@@ -32,6 +32,7 @@ public class UserAllListController extends HttpServlet {
 		List<UserVo> userList;
 		userList = userService.getAllUser(); 
 		
+		System.out.println(userList.size() );
 		
 		//사용 전체 정보를 request 객체에 속성으로 설정
 		request.setAttribute("userList",userList );		

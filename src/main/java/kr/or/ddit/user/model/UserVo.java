@@ -20,10 +20,11 @@ public class UserVo {
 	}
 	
 	//reg_dt 값을 yyyy/mm/dd 포맷팅
-	public String getREg_dt_fmt() {
+	public String getReg_dt_fmt() {
 		SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd");
 		return sdf.format(reg_dt);
 	}
+	
 	public void setReg_dt(Date reg_dt) {
 		this.reg_dt = reg_dt;
 	}

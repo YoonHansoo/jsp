@@ -71,7 +71,7 @@
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">등록일자</label>
 						<div class="col-sm-10">
-						<label for="userNm" class="col-sm-2 control-label"><%=user.getREg_dt_fmt()%></label>
+						<label for="userNm" class="col-sm-2 control-label"><%=user.getReg_dt_fmt()%></label>
 						</div>
 					</div>
 

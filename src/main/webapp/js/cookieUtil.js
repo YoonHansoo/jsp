@@ -39,7 +39,7 @@ function setCookie(cookieName, cookieValue, expires) {
 
 	var today = new Date();
 	today.setDate(today.getDate() + parseInt(expires));
-	document.cookie = cookieName + "=" + cookieValue + "; path=/; expires="
+	document.cookie = cookieName + "=" + cookieValue + "; path=; expires="
 			+ today.toGMTString();
 
 }

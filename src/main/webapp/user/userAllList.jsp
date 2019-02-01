@@ -1,6 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,10 +24,7 @@
 
 <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
-
-
 </head>
-
 
 <body>
 	<!--  헤더  삽입 -->
@@ -41,9 +39,10 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h1 class="page-header">전체 사용자 리스트</h1>
 				<!--userList 정보를 화면에 출력하는 로직 -->
-				<%
+				<%-- <%
 				List<UserVo> userList  = (List<UserVo>)request.getAttribute("userList");
-				%>
+				%> --%>
+				
 				<div class="table-responsive">
 					<table class="table table-striped">
 						<thead>
@@ -56,24 +55,18 @@
 							</tr>
 						</thead>
 						<tbody>
-							<%
-    		 for(int i =0; i < userList.size(); i++){
-    		 	out.print("<tr class ='userTr' data-userid="+ userList.get(i).getUserId()+  ">");  //data-(Key) key은소문자로만 ex)data-pw
-    		 	out.print("<td></td>");
-    		 	out.print("<td>"+userList.get(i).getUserId() +"</td>");
-    		 	out.print("<td>"+userList.get(i).getUserNm() +"</td>");
-    		 	out.print("<td></td>");
-    		 	out.print("<td>"+userList.get(i).getREg_dt_fmt() +"</td>");
-    		 	out.print("</tr>");
-    		 }
-    		 %>
-
-
+						<c:forEach items="${userList}" var="user">
+						<tr class = 'userTr' data-userid="${user.userId}">
+						<td></td>
+						<td>${user.userId}</td>
+						<td>${user.userNm}</td>
+						<td></td>
+						<td>${user.reg_dt_fmt}</td>
+						</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
@@ -85,7 +78,6 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 	<script>
 	
 		//문서 로딩이 완료된 이후 이벤트 등록 
@@ -124,7 +116,20 @@
 		});
 	</script>
 
-	<form id="frm" action="<%=request.getContextPath()%>/user" method="get">
+	<%
+	pageContext.getRequest().equals(request);	
+	pageContext.getSession().equals(session);
+	request.getContextPath();
+	
+	application.getContextPath();
+	
+	((HttpServletRequest)pageContext.getRequest()).getContextPath();
+	pageContext.getServletContext().getContextPath();
+	%>
+	
+
+
+	<form id="frm" action="${pageContext.servletContext.contextPath}/user" method="get">
 		<input type="hidden" name="userId" id="userId" />
 	</form>
 </body>

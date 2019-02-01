@@ -47,11 +47,14 @@ public class UserPagingListController extends HttpServlet {
 		List<UserVo> userList = (List<UserVo>) resultMap.get("userList");
 		int userCnt = (int) resultMap.get("userCnt");
 		
+		int lastPage = userCnt / pageSize + (userCnt % pageSize > 0 ? 1 : 0);
+		
 		//request객체에 조회된 결과를 속성으로 설정
 		request.setAttribute("userList",userList);
 		request.setAttribute("userCnt",userCnt);
 		request.setAttribute("pageSize",pageSize);
 		request.setAttribute("page",page);
+		request.setAttribute("lastPage",lastPage);
 		
 		
 		//userPaging를 화면으로 출력할 jsp로 위임(forward)

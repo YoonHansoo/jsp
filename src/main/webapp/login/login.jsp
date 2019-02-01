@@ -72,9 +72,6 @@
 		}
 		
 		
-		
-		
-		
 		//signin button 클릭 이벤트 핸들러
 		$("#signin").click(function() { //$("#signin").click(function())
 
@@ -102,3 +99,5 @@
 	})
 </script>
 </html>
+
+	

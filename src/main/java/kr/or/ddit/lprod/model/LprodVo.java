@@ -3,33 +3,33 @@ package kr.or.ddit.lprod.model;
 public class LprodVo {
 	
 	
-	private String LPROD_ID;
-	private String LPROD_GU;
-	private String LPROD_NM;
-	
-	
-	public String getLPROD_ID() {
-		return LPROD_ID;
+	private String lprod_id;
+	private String lprod_gu;
+	private String lprod_nm;
+	public String getLprod_id() {
+		return lprod_id;
 	}
-	public void setLPROD_ID(String lPROD_ID) {
-		LPROD_ID = lPROD_ID;
+	public void setLprod_id(String lprod_id) {
+		this.lprod_id = lprod_id;
 	}
-	public String getLPROD_GU() {
-		return LPROD_GU;
+	public String getLprod_gu() {
+		return lprod_gu;
 	}
-	public void setLPROD_GU(String lPROD_GU) {
-		LPROD_GU = lPROD_GU;
+	public void setLprod_gu(String lprod_gu) {
+		this.lprod_gu = lprod_gu;
 	}
-	public String getLPROD_NM() {
-		return LPROD_NM;
+	public String getLprod_nm() {
+		return lprod_nm;
 	}
-	public void setLPROD_NM(String lPROD_NM) {
-		LPROD_NM = lPROD_NM;
+	public void setLprod_nm(String lprod_nm) {
+		this.lprod_nm = lprod_nm;
 	}
 	@Override
 	public String toString() {
-		return "LprodVo [LPROD_ID=" + LPROD_ID + ", LPROD_GU=" + LPROD_GU + ", LPROD_NM=" + LPROD_NM + "]";
+		return "LprodVo [lprod_id=" + lprod_id + ", lprod_gu=" + lprod_gu + ", lprod_nm=" + lprod_nm + "]";
 	}
+	
+	
 	
 	
 	

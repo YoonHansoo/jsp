@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,12 +41,12 @@
 			<%@ include file="/module/left.jsp"%>
 
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">전체 사용자 리스트</h1>
+				<h1 class="page-header">제품 그룹  리스트</h1>
 				<!--userList 정보를 화면에 출력하는 로직 -->
-				<%
+		<%-- 		<%
 					List<LprodVo> lprodList = (List<LprodVo>) request.getAttribute("lprodList");
 					int lastPage = (Integer)request.getAttribute("lastPage");
-				%>
+				%> --%>
 				<div class="table-responsive">
 					<table class="table table-striped">
 						<thead>
@@ -56,67 +57,70 @@
 							</tr>
 						</thead>
 						<tbody>
-							<%
-								for (int i = 0; i < lprodList.size(); i++) {
-									out.print("<tr class ='lprodTr' data-lprodgu="+ lprodList.get(i).getLPROD_GU()+  ">");//data-(Key) key은소문자로만 ex)data-pw
-									out.print("<td></td>");
-									out.print("<td>" + lprodList.get(i).getLPROD_ID() + "</td>");
-									out.print("<td>" + lprodList.get(i).getLPROD_GU() + "</td>");
-									out.print("<td></td>");
-									out.print("<td>" + lprodList.get(i).getLPROD_NM() + "</td>");
-									out.print("</tr>");
-								}
-							%>
+						
+							<c:forEach items="${lprodList}" var="lprod">
+							<tr class ='lprodTr' data-lprodgu="${lprod.lprod_gu}">
+							<td>${lprod.lprod_id}</td>
+							<td>${lprod.lprod_gu}</td>
+							<td>${lprod.lprod_nm}</td>
+							</tr>
+							
+							</c:forEach>
 						</tbody>
 					</table>
 
-					<%
+
+			<%-- 		<%
 						int cpage = (Integer) request.getAttribute("page");
 						String cp = request.getContextPath();
-					%>
+					%> --%>
 				</div>
 				<nav style="text-align: center;">
 					<ul class="pagination">
-						<%
-							if (cpage == 1) {
-						%>
+					
+					
+					<c:choose>
+						<c:when test="${page eq 1}">
 						<li class="disabled"><a ria-label="Previous"> <span
 								aria-hidden="true">&laquo;</span>
 						</a></li>
-						<%
-							} else {
-						%>
-						<li><a href="<%=cp%>/lprodList" aria-label="Previous">
+						</c:when>
+						<c:otherwise>
+						<li><a href="${pageContext.servletContext.contextPath}/lprodList" aria-label="Previous">
 							 	<span aria-hidden="true">&laquo;</span> 
 						</a></li>
-						<%
-							}
-						%>
-						<%
-							for (int i = 1; i <= lastPage; i++) {
-						%>
-						<li <%if (i == cpage) { //클릭했을때의 효과주기%> class="active" <%}%>><a
-							href="<%=cp%>lprodList?page=<%=i%>"><%=i%></a>&nbsp;&nbsp;</li>
-						<%
-							}
-						%>
-
-
-						<%
-							if (cpage == lastPage) {
-						%>
-						<li class="disabled"><a ria-label="Next"> <span
-								aria-hidden="true">&raquo;</span>
+						</c:otherwise>					
+					
+					</c:choose>
+					
+					
+					<c:forEach begin="1" end="${lastPage}" var="i">
+							<c:set var="active" value="" /> 
+						<c:if test="${i eq page}">
+							<c:set var="active" value="active"/>
+						</c:if>			
+							<li class ="${active}">
+							<a href="${pageContext.servletContext.contextPath}lprodList?page=${i}">${i}</a></li>
+					</c:forEach>
+					
+					<c:choose>
+						<c:when test="${page eq lastPage}">
+						<li class="disabled">
+							<a ria-label="Next"> 
+						<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+						</c:when>
+						<c:otherwise>
+								<li>
+								<a href="${pageContext.servletContext.contextPath}/lprodList?page=${lastPage}"aria-label="Next"> 
+								<span aria-hidden="true">&raquo;</span>
 						</a></li>
-						<%
-							} else {
-						%>
-						<li><a href="<%=cp%>/lprodList?page=<%=lastPage%>"
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
-						<%
-							}
-						%>
+						
+						</c:otherwise>
+					
+					
+					</c:choose>
 
 					</ul>
 				</nav>
@@ -171,7 +175,7 @@
 	});
 </script>
 
-<form id="frm" action="<%=request.getContextPath()%>/prod" method="get">
+<form id="frm" action="${pageContext.servletContext.contextPath}/prod" method="get">
 	<input type="hidden" name="lprodGu" id="lprodGu" />
 </form>
 </body>
