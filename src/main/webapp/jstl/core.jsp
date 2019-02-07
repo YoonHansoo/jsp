@@ -1,3 +1,4 @@
+
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="kr.or.ddit.rangers.service.RangersService"%>
@@ -39,8 +40,7 @@
 	<%=session.getAttribute("userId")%>
 	<br /> userId(EL) : ${userId}
 	<br />
-
-
+<c:set var="userId" value="brown" scope="session"></c:set>
 	<c:set target="${ranger}" property="age" value="10" />
 	<%--속성을변경  target=> 객체  property => 속성(setter와 매핑됨)  value=>바꿀 값 --%>
 
@@ -130,6 +130,8 @@ ${rangersList.get(i).name} / ${rangersList.get(i).alias} / ${rangersList.get(i).
 	${entry.key} / ${entry.value }<br/>
 	</c:forEach>
      
+     
+
 
 </body>
 </html>
