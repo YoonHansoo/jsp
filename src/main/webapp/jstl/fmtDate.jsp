@@ -10,15 +10,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	
 	<c:set var="now" value="<%= new Date()%>"></c:set>
 		<%--date를 String으로 --%>	
 		 now: ${now }
+		 
+		 
 	<h2>ko</h2>
 	<fmt:setLocale value="ko_kr"/>
 	ko date : <fmt:formatDate value="${now }"/> <br/>
 	ko date pattern : <fmt:formatDate value="${now }" pattern="yyyy-MM-dd"/> <br/>
-		
+			
 	<h2>de</h2>
 	<fmt:setLocale value="de_de"/>
 	de date : <fmt:formatDate value="${now }"/> <br/>
