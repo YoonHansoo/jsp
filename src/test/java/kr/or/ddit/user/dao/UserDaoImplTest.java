@@ -2,23 +2,39 @@ package kr.or.ddit.user.dao;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import kr.or.ddit.db.mybatis.MybatisSqlSessionFactory;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.util.model.PageVo;
 
 public class UserDaoImplTest {
 	private IUserDao userDao;
+	private SqlSession sqlSession;
+	
 	@Before
 	public void setup() {
 		userDao = new UserDaoImpl();
+		
+		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
+		sqlSession = sqlSessionFactory.openSession();
+		
+		userDao.deleteUser(sqlSession, "test");
 	}
 	
+	
+	@After
+	public void tearDown() {
+		sqlSession.close();
+		
+	}
 	
 	@Test
 	public void gertAllUserTest() {
@@ -26,7 +42,7 @@ public class UserDaoImplTest {
 		
 		/*** When ***/
 		
-		List<UserVo> list = userDao.gertAllUser();
+		List<UserVo> list = userDao.gertAllUser(sqlSession);
 		
 		for(UserVo userVo : list)
 			System.out.println(userVo);
@@ -45,7 +61,7 @@ public class UserDaoImplTest {
 		
 		/***When***/
 		
-		UserVo user  = userDao.selectUser("cony");
+		UserVo user  = userDao.selectUser(sqlSession, "cony");
 		
 		System.out.println(user.getUserId());
 
@@ -66,7 +82,7 @@ public class UserDaoImplTest {
 		PageVo pageVo = new PageVo(1,10);
 
 		/***When***/
-		List<UserVo> userList = userDao.selectUserPagingList(pageVo);
+		List<UserVo> userList = userDao.selectUserPagingList(sqlSession, pageVo);
 		
 		/***Then***/
 		//assertNotNull(userList);
@@ -85,7 +101,7 @@ public class UserDaoImplTest {
 		
 
 		/***When***/
-		int userCnt = userDao.getUserCnt();
+		int userCnt = userDao.getUserCnt(sqlSession);
 		
 		/***Then***/
 		assertEquals(105, userCnt);
@@ -142,5 +158,27 @@ public class UserDaoImplTest {
 		/***Then***/
 		assertEquals(1,lastPage);	
 	}
+	
+	@Test
+	public void testinsertUser() {
+		/***Given***/
+		UserVo vo = new UserVo();
+		vo.setUserId("test");
+		vo.setUserNm("테스트");
+		vo.setAlias("별명");
+		vo.setAddr1("대전 중구 대흥로 76");
+		vo.setAddr2("2층 ddit");
+		vo.setZipcode("34942");
+		vo.setPass("testpass");
+		
+		
+
+		/***When***/
+		 int userCnt= userDao.insertUser(sqlSession, vo);
+		
+		/***Then***/
+		assertEquals(1, userCnt);
+	}
+
 
 }

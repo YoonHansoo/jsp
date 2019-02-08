@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import kr.or.ddit.db.mybatis.MybatisSqlSessionFactory;
 import kr.or.ddit.user.dao.IUserDao;
 import kr.or.ddit.user.dao.UserDaoImpl;
 import kr.or.ddit.user.model.UserVo;
@@ -26,22 +30,64 @@ public class UserServiceImpl implements IUserService {
 	 */
 	@Override
 	public List<UserVo> getAllUser() {
-		return userDao.gertAllUser();
+		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		List<UserVo> userList = userDao.gertAllUser(sqlSession);
+		sqlSession.close();
+		
+		return userList;
 	}
 
 	@Override
 	public UserVo selectUser(String userId) {
-		return userDao.selectUser(userId);
+		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		UserVo userVo = userDao.selectUser(sqlSession ,userId);
+		sqlSession.close();
+		
+		return userVo;
 	}
 
 	@Override
 	public Map<String,Object> selectUserPagingList(PageVo pageVo) {
+		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+
+		
 		Map<String,Object> resultMap = new HashMap<>();
 		
-		resultMap.put("userList",userDao.selectUserPagingList(pageVo));
-		resultMap.put("userCnt",userDao.getUserCnt());
 		
-		return resultMap;
+		resultMap.put("userList",userDao.selectUserPagingList(sqlSession, pageVo));
+		resultMap.put("userCnt",userDao.getUserCnt(sqlSession));
+		
+		sqlSession.close();
+		return resultMap; 
+	}
+
+	@Override
+	public int insertUser(UserVo vo) {
+		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		int insertCnt = userDao.insertUser(sqlSession, vo);
+		
+		sqlSession.commit();
+		sqlSession.close();
+		return insertCnt;
+	}
+
+	@Override
+	public int deleteUser(String id) {
+		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		
+		int deleteCnt = userDao.deleteUser(sqlSession, id);
+		
+		sqlSession.commit();
+		sqlSession.close();
+		return deleteCnt;
 	}
 
 }

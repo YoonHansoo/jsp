@@ -19,5 +19,9 @@ public interface IUserService {
 	
 	public UserVo selectUser(String userId);
 	
+	
 	Map<String,Object> selectUserPagingList(PageVo pageVo);
+	int insertUser(UserVo vo);
+	
+	int deleteUser(String id);
 }

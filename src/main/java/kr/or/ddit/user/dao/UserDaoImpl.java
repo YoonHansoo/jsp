@@ -18,21 +18,14 @@ public class UserDaoImpl implements IUserDao {
 	 * 
 	 * @return Method 설명 :전체 사용자 조회
 	 */
-	public List<UserVo> gertAllUser() {
-		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();  //getSqlSessionFactory 객체를 얻어옴
-		
-		SqlSession sqlSessin = sqlSessionFactory.openSession();  //mapper에 있는 sql을 실행할 수 있는 session객체를 얻어옴
-		 List<UserVo> userList = sqlSessin.selectList("user.getAllUser");  //Ibatis에서 queryForList와 동일함
-		 sqlSessin.close(); //사용한 sqlSessin 객체 반납
+	public List<UserVo> gertAllUser(SqlSession sqlSession) {
+		 List<UserVo> userList = sqlSession.selectList("user.getAllUser");  //Ibatis에서 queryForList와 동일함
 		 return userList; 
 	}
 	
-	public UserVo selectUser(String userId) {
-		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
-		SqlSession sqlSessin = sqlSessionFactory.openSession();
+	public UserVo selectUser(SqlSession sqlSession, String userId) {
 		
-		UserVo userVo = sqlSessin.selectOne("user.selectUser", userId);  //Ibatis에서 queryForObject와 비슷함
-		sqlSessin.close();//사용한 sqlSessin 객체 반납 
+		UserVo userVo = sqlSession.selectOne("user.selectUser", userId);  //Ibatis에서 queryForObject와 비슷함
 		return userVo;
 	}
 
@@ -45,11 +38,8 @@ public class UserDaoImpl implements IUserDao {
 	 * Method 설명 :사용자 페이징 리스트 조회
 	 */
 	@Override
-	public List<UserVo> selectUserPagingList(PageVo pageVo) {
-		SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
-		SqlSession sqlSessin = sqlSessionFactory.openSession();
-		 List<UserVo> list = sqlSessin.selectList("user.selectUserPagingList", pageVo);  //Ibatis에서 queryForObject와 비슷함
-		sqlSessin.close();//사용한 sqlSessin 객체 반납 
+	public List<UserVo> selectUserPagingList(SqlSession sqlSession, PageVo pageVo) {
+		 List<UserVo> list = sqlSession.selectList("user.selectUserPagingList", pageVo);  //Ibatis에서 queryForObject와 비슷함
 		return list;
 	}
 
@@ -61,11 +51,32 @@ public class UserDaoImpl implements IUserDao {
 	 * Method 설명 : 전체 사용자 수 조회
 	 */
 	@Override
-	public int getUserCnt() {
-			SqlSessionFactory sqlSessionFactory = MybatisSqlSessionFactory.getSqlSessionFactory();
-			SqlSession openSession = sqlSessionFactory.openSession();
-			int  userCnt = openSession.selectOne("user.getUserCnt");
-			openSession.close();
+	public int getUserCnt(SqlSession sqlSession) {
+			int  userCnt = sqlSession.selectOne("user.getUserCnt");
 		return userCnt;
+	}
+
+	@Override
+	public int insertUser(SqlSession sqlSession, UserVo vo) {
+		
+		int insertCnt = sqlSession.insert("user.insertUser", vo);
+		sqlSession.commit();
+		
+		return insertCnt;
+	}
+
+	/**
+	 * Method : deleteUser
+	 * 작성자 : Hansoo
+	 * 변경이력 :
+	 * @param userId
+	 * @return
+	 * Method 설명 : 사용자 삭제
+	 */
+	@Override
+	public int deleteUser(SqlSession sqlSession, String userId) {
+		 int deleteCnt= sqlSession.delete("user.deleteUser", userId);
+		 sqlSession.commit();
+		return deleteCnt; 
 	}
 }

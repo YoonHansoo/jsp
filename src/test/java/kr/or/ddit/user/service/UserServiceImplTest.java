@@ -21,6 +21,7 @@ public class UserServiceImplTest {
 	@Before
 	public void setUp() {
 		userService = new UserServiceImpl();
+		userService.deleteUser("test2");
 	}
   //getAllUser 메소드를 테스트하는 메소드 작성
    @Test
@@ -64,4 +65,23 @@ public class UserServiceImplTest {
 	   assertEquals(105, userCnt);
 	   
    }
+   @Test
+   public void insertUser() {
+	   /***Given***/
+		UserVo vo = new UserVo();
+		vo.setUserId("test2");
+		vo.setUserNm("테스트2");
+		vo.setAlias("별명2");
+		vo.setAddr1("대전 중구 대흥로 76");
+		vo.setAddr2("3층 ddit");
+		vo.setZipcode("34941");
+		vo.setPass("testpass2");
+	   
+	   /***When***/
+		 int userCnt= userService.insertUser(vo);
+		
+	   /***Then***/
+	   assertEquals(1,userCnt);
+   }
+   
 }
