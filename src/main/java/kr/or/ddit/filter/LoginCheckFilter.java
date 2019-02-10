@@ -61,7 +61,7 @@ public class LoginCheckFilter implements Filter {
 					|| uri.endsWith(".png"))
 				chain.doFilter(request, response); //얘는 그냥 보내줌
 			else {
-				hsresp.sendRedirect("/login"); //userVo가 null임으로 login페이지로 보내라.
+				hsresp.sendRedirect(hsr.getContextPath()+"/login"); //userVo가 null임으로 login페이지로 보내라.
 			}
 		}
 		
