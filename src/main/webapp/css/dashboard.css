@@ -103,19 +103,3 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
-
-.btn-default{
-	padding-top:300px;
-	text-align: right;
-}
-
-.btn btn-default{
-	padding-top:500px;
-	text-align: right;
-}
-/* .pagination{
-	text-align: center;
-}
-.nav{
-	text-align: center;
-} */

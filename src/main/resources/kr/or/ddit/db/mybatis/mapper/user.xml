@@ -14,10 +14,15 @@
 		  [메서드 명: selectUser(String userId) ] -->
 		  
  <select id="selectUser" parameterType="String" resultType="UserVo">
- 	select USERID,
- 		   USERNM,
- 		   PASS,
- 		   REG_DT
+ 	select     userid
+              , userNm
+              , alias
+              , addr1
+              , addr2
+              , zipcode
+              , pass
+              , reg_dt
+ 		   
  	  from USERS
  	 WHERE USERID = #{userId}
  </select>
@@ -71,4 +76,19 @@
  delete from users
  where userid = #{value}
   </delete>
+  
+  
+  
+  <!--사용자 수정  -->
+  <update id="updateUser" parameterType="userVo">
+  update users
+    set userNM  =  #{userNm}
+      , alias   =  #{alias}
+      , pass    =  #{pass}
+      , addr1   =  #{addr1}
+      , addr2   =  #{addr2}
+      , zipcode =  #{zipcode}
+    where USERID = #{userId}
+  
+  </update>
 </mapper>

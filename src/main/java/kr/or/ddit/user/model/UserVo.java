@@ -15,11 +15,14 @@ public class UserVo {
 	public String getUserNm() {
 		return userNm;
 	}
-
+	
 	//reg_dt 값을 yyyy/mm/dd 포맷팅
 	public String getReg_dt_fmt() {
 		SimpleDateFormat sdf  = new SimpleDateFormat("yyyy-MM-dd");
 		return sdf.format(reg_dt);
+	}
+
+	public UserVo() {
 	}
 
 	public String getUserId() {

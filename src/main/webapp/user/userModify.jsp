@@ -37,8 +37,8 @@
 			<%@ include file="/module/left.jsp"%>
 
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">사용자 정보조회</h1>
-			 <form id="frm" action="${pageContext.request.contextPath }/userForm" method="post" class="form-horizontal" role="form"><!-- 디비값이 변경되면 post-->
+				<h1 class="page-header">사용자 정보수정</h1>
+			 <form id="frm" action="${pageContext.request.contextPath }/userModifyForm" method="post" class="form-horizontal" role="form"><!-- 디비값이 변경되면 post-->
                <div class="form-group">
                   <label for="userNm" class="col-sm-3 control-label">사용자 아이디</label>
                   <div class="col-sm-5">
@@ -88,7 +88,7 @@
                <div class="form-group">
                   <label for="userNm" class="col-sm-3 control-label">Password</label>
                   <div class="col-sm-5">
-                     <input type="password" class="form-control" id="pass"   name="pass" value="${userVo.pass}">
+                     <input type="password" class="form-control" id="pass"   name="pass" placeholder="********">
                   </div>
                </div>
                
@@ -96,7 +96,7 @@
 
                <div class="form-group">
                   <div class="col-sm-offset-3 col-sm-9">
-                     <button type="button" id="regBtn" class="btn btn-default">사용자 등록</button>
+                     <button type="button" id="updBtn" class="btn btn-default">사용자 수정</button>
                   </div>
                </div>
             </form>
@@ -133,8 +133,6 @@
 			$("#zipcodeBtn").click(function(){
 				new daum.Postcode({
 	        		oncomplete: function(data) {
-	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-	            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
 	            console.log(data);
 	            
 	            //새 우편번호 : data.zonecode
@@ -150,15 +148,11 @@
 	    	}).open();
 			});
 			
-			//사용자 등록 버튼 클릭 이벤트
-			$("#regBtn").click(function(){
+			//사용자 수정 버튼 클릭 이벤트
+			$("#updBtn").click(function(){
 				//사용자 아이디
 			
-				if($("#userId").val().trim() ==""){
-					alert("사용자 아이디를 입력해주세요");
-					$("userId").focus();
-					return;
-				}
+			
 				//사용자 이름
 				if($("#userNm").val().trim() ==""){
 					alert("사용자 이름를 입력해주세요");

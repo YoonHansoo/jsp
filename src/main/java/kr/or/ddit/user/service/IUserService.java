@@ -21,7 +21,26 @@ public interface IUserService {
 	
 	
 	Map<String,Object> selectUserPagingList(PageVo pageVo);
+	
+	/**
+	 * Method : insertUser
+	 * 작성자 : Hansoo
+	 * 변경이력 :
+	 * @param vo
+	 * @return
+	 * Method 설명 :사용자 등록
+	 */
 	int insertUser(UserVo vo);
 	
 	int deleteUser(String id);
+	
+	/**
+	 * Method : updateUser
+	 * 작성자 : Hansoo
+	 * 변경이력 :
+	 * @param vo
+	 * @return
+	 * Method 설명 :사용자 수정
+	 */
+	int updateUser(UserVo vo);
 }

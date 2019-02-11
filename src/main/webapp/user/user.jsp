@@ -1,6 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +22,6 @@
 <link href="<%=request.getContextPath()%>/css/dashboard.css"
 	rel="stylesheet">
 
-<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
 </head>
 
@@ -31,6 +31,7 @@
 	<%@ include file="/module/header.jsp"%>
 	<!--  내부에서 처리하기 떄문에 getContextPath를 사용할 필요가 없음. -->
 
+
 	<div class="container-fluid">
 		<div class="row">
 			<!--사이드 삽입 -->
@@ -38,14 +39,14 @@
 
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h1 class="page-header">사용자 정보조회</h1>
-				<form class="form-horizontal" role="form">
+				<form id="frm" class="form-horizontal" role="form" method="get" action="${pageContext.request.contextPath}/userModifyForm">
 				
 				<% UserVo user = (UserVo)request.getAttribute("userVo"); %>
-				
+				<input type="hidden" name ="userId" value="${userVo.userId}">
 					<div class="form-group">
 						<label for="userId" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
-							<label for="userNm" class="col-sm-2 control-label"><%=user.getUserId()%></label>
+							<label for="userNm" class="col-sm-2 control-label" ><%=user.getUserId()%></label>
 						</div>
 					</div>
 
@@ -58,13 +59,13 @@
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">별명</label>
 						<div class="col-sm-10">
-							<label for="userNm" class="col-sm-2 control-label">미구현</label>
+							<label for="userNm" class="col-sm-2 control-label"><%=user.getAlias()%></label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">Password</label>
 						<div class="col-sm-10">
-						<label for="userNm" class="col-sm-2 control-label">****</label>
+						<label for="userNm" class="col-sm-2 control-label"><%=user.getPass()%></label>
 						</div>
 					</div>
 					
@@ -94,6 +95,20 @@
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
+<script>
+
+$(document).ready(function() {
+	console.log("document ready");
+
+	//msg속성이 존재하면 alert 존재하지 않으면 넘어가기
+	<c:if test="${msg != null}">
+	alert("${msg}");
+	<%session.removeAttribute("msg");%> //세션객체 지워주기
+	</c:if>
+});
+
+</script>
+	
 </body>
 </html>
 

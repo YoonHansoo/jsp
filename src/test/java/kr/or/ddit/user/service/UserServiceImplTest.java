@@ -66,7 +66,7 @@ public class UserServiceImplTest {
 	   
    }
    @Test
-   public void insertUser() {
+   public void testInsertUser() {
 	   /***Given***/
 		UserVo vo = new UserVo();
 		vo.setUserId("test2");
@@ -83,5 +83,26 @@ public class UserServiceImplTest {
 	   /***Then***/
 	   assertEquals(1,userCnt);
    }
+   
+   
+   @Test
+	public void 유저업데이트() {
+		
+		/***Given***/
+		UserVo vo = new UserVo();
+		vo.setUserId("james");
+		vo.setUserNm("테스트112");
+		vo.setAlias("별명수정완료");
+		vo.setAddr1("대전 중구 대흥로 76");
+		vo.setAddr2("2층 ddit");
+		vo.setZipcode("34942");
+		vo.setPass("testpass");
+
+		/***When***/
+		 int userCnt= userService.updateUser(vo);
+		
+		/***Then***/
+			assertEquals(1, userCnt);
+	}
    
 }

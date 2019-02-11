@@ -180,5 +180,24 @@ public class UserDaoImplTest {
 		assertEquals(1, userCnt);
 	}
 
+	@Test
+	public void 유저업데이트() {
+		
+		/***Given***/
+		UserVo vo = new UserVo();
+		vo.setUserId("brown");
+		vo.setUserNm("테스트");
+		vo.setAlias("별명");
+		vo.setAddr1("대전 중구 대흥로 76");
+		vo.setAddr2("2층 ddit");
+		vo.setZipcode("34942");
+		vo.setPass("testpass");
+
+		/***When***/
+		 int userCnt= userDao.updateUser(sqlSession, vo);
+		
+		/***Then***/
+			assertEquals(1, userCnt);
+	}
 
 }

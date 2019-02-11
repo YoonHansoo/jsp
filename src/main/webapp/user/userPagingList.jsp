@@ -24,7 +24,6 @@
 <link href="<%=request.getContextPath()%>/css/dashboard.css"
 	rel="stylesheet">
 
-<script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
 
 
@@ -69,7 +68,7 @@
 					</table>
 					
 					<form action="${pageContext.request.contextPath}/userForm" method="get">
-						<button type="submit" class="btn btn-default">사용자 등록</button>
+					   <button type="submit" class="btn btn-default">사용자 등록</button>
 					</form>
 				</div>
 
@@ -146,6 +145,13 @@
 		$(document).ready(function() {
 			console.log("document ready");
 
+			//msg속성이 존재하면 alert 존재하지 않으면 넘어가기
+			<c:if test="${msg != null}">
+			alert("${msg}");
+			<%session.removeAttribute("msg");%> //세션객체 지워주기
+			</c:if>
+			
+			
 			//사용자 tr태그 클릭 시 이벤트 핸들러 
 
 			/* 방법1 택1

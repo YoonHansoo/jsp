@@ -52,4 +52,14 @@ public interface IUserDao {
 	 * Method 설명 :유저 아이디 삭제
 	 */
 	int deleteUser(SqlSession sqlSession, String userId);
+	
+	/**
+	 * Method : updateUser
+	 * 작성자 : Hansoo
+	 * 변경이력 :
+	 * @param vo
+	 * @return
+	 * Method 설명 :사용자 수정
+	 */
+	int updateUser(SqlSession sqlSession, UserVo vo);
 }
