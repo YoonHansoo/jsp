@@ -12,6 +12,25 @@ public class UserVo {
 	private String addr2;//상세주소
 	private String zipcode; //우편번호
 	private Date reg_dt; //등록 일시
+	private String filename; //업로드한 파일명
+	private String realFilename; // 실제파일경로
+	
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public String getRealFilename() {
+		return realFilename;
+	}
+
+	public void setRealFilename(String realFilename) {
+		this.realFilename = realFilename;
+	}
+
 	public String getUserNm() {
 		return userNm;
 	}
@@ -88,9 +107,10 @@ public class UserVo {
 	@Override
 	public String toString() {
 		return "UserVo [userId=" + userId + ", userNm=" + userNm + ", alias=" + alias + ", pass=" + pass + ", addr1="
-				+ addr1 + ", addr2=" + addr2 + ", zipcode=" + zipcode + ", reg_dt=" + reg_dt + "]";
+				+ addr1 + ", addr2=" + addr2 + ", zipcode=" + zipcode + ", reg_dt=" + reg_dt + ", filename=" + filename
+				+ ", realFilename=" + realFilename + "]";
 	}
-	
 
+	
 
 }

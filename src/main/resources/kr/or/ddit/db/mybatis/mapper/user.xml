@@ -22,6 +22,8 @@
               , zipcode
               , pass
               , reg_dt
+              , filename
+              , realfilename
  		   
  	  from USERS
  	 WHERE USERID = #{userId}
