@@ -55,13 +55,17 @@ public class ProfileImgServlet extends HttpServlet {
 			fis = new FileInputStream(new File(noimgPath));
 		
 		}
+		
+	
 		//4.FileInputStream을 response객체의 outputStream 객체에 write
 		ServletOutputStream sos = resp.getOutputStream();
 		byte[] buff = new byte[512];
 		int len = 0;
 		while((len = fis.read(buff))> -1) {
 			sos.write(buff);
+			
 		}
+		
 		sos.flush();
 		sos.close();
 		fis.close();
