@@ -1,6 +1,7 @@
 package kr.or.ddit.user.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -77,6 +78,12 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public int updateUser(SqlSession sqlSession, UserVo vo) {
 		int updateCnt = sqlSession.update("user.updateUser", vo);
+		return updateCnt;
+	}
+
+	@Override
+	public int updatePassforEncrypt(SqlSession sqlSession, UserVo vo) {
+		 int updateCnt= sqlSession.update("user.updatePassforEncrypt", vo);
 		return updateCnt;
 	}
 }

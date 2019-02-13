@@ -102,6 +102,12 @@
     where USERID = #{userId}
   
   </update>
+  <update id="updatePassforEncrypt" parameterType="userVo">
+  update users
+    set   pass    =  #{pass}
+    where USERID = #{userId}
+  
+  </update>
   
   
  

@@ -43,5 +43,12 @@ public interface IUserService {
 	 * Method 설명 :사용자 수정
 	 */
 	int updateUser(UserVo vo);
-
+	
+	/**
+	 * Method : EncryptPass
+	 * 작성자 : Hansoo
+	 * 변경이력 :
+	 * Method 설명 : 모든 사용자의 비밀번호를 암호화
+	 */
+	void EncryptPass();
 }

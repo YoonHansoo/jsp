@@ -105,4 +105,15 @@ public class UserServiceImplTest {
 			assertEquals(1, userCnt);
 	}
    
+   @Test
+   public void EncryptPass_Test() {
+	   /***Given***/
+	
+
+	/***When***/
+	   userService.EncryptPass();
+
+	/***Then***/
+   }
+   
 }
