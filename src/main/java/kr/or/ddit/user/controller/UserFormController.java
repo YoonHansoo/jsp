@@ -1,20 +1,31 @@
 package kr.or.ddit.user.controller;
 
 import java.io.IOException;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.IUserService;
 import kr.or.ddit.user.service.UserServiceImpl;
+import kr.or.ddit.util.PartUtil;
 @WebServlet("/userForm")
+@MultipartConfig(maxFileSize=5*1024*1024, maxRequestSize=5*5*1024*1024) 
 public class UserFormController extends HttpServlet {
 	
 	IUserService userService;
+	
+	private Logger logger = LoggerFactory.getLogger(UserFormController.class);
 	
 	@Override
 	public void init() throws ServletException {
@@ -64,6 +75,27 @@ public class UserFormController extends HttpServlet {
 		userVo.setZipcode(zipcode);
 		userVo.setPass(pass);
 		
+		//사용자 사진
+		 Part profilePart = req.getPart("profile");
+		 String filename = "";
+		 String realFilename="";
+		 
+		 //사용자가 사진을 올린 겨우
+		 if(profilePart.getSize()>0) {
+			//사용자 테이블에 파일명을 저장
+			//(실제 업로드한 파일명 - filename , 파일 충돌을 방지하기 위해 사용한 uuid - realFilename)
+			 String contentdisposition = profilePart.getHeader("Content-Disposition");
+			 
+			  filename = PartUtil.getFileNameFromPart(contentdisposition);
+			  realFilename = "d:\\picture\\"+UUID.randomUUID().toString(); //DB에 전체경로로 저장되어야 하기 떄문에
+			
+			 //디스크에 기록 
+			  profilePart.write(realFilename);
+		 }
+		 
+		 userVo.setFilename(filename);
+		 userVo.setRealFilename(realFilename);
+		 
 		//아이디가 중복되었을 때
 		if(userService.selectUser(userId) != null) {
 			System.out.println("중복된 값");

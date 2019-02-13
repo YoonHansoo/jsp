@@ -60,6 +60,8 @@
               , zipcode
               , pass
               , reg_dt
+              , filename
+              , realFilename
                 )
      values     (
                 #{userId}
@@ -70,6 +72,8 @@
               , #{zipcode}
               , #{pass}
               , sysdate
+              , #{filename}
+              , #{realFilename}
                 )
  	</insert>
 
@@ -90,7 +94,15 @@
       , addr1   =  #{addr1}
       , addr2   =  #{addr2}
       , zipcode =  #{zipcode}
+       <if test="filename != null">
+ <!--  <if test="#{filename} != null"> -->
+       , filename = #{filename} 
+       , realFilename = #{realFilename}
+      </if>
     where USERID = #{userId}
   
   </update>
+  
+  
+ 
 </mapper>

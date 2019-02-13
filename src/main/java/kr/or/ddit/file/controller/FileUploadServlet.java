@@ -2,6 +2,7 @@ package kr.or.ddit.file.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -18,19 +19,16 @@ import org.slf4j.LoggerFactory;
 
 
 import kr.or.ddit.util.PartUtil;
-
-//
 //5MB = 5 * 1MB
 //1MB = 1024KB
 //1KB = 1024BYTE
 // 5MB = 5 * 1024 * 1024 byte
-@WebServlet("/fileUpload")
-@MultipartConfig(maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024) // 단위는 byte
+@WebServlet("/fileUpload") 
+@MultipartConfig(maxFileSize = 5 * 1024 * 1024, maxRequestSize = 5 * 5 * 1024 * 1024) // 단위는 byte    //서브릿에서 바이너리 타입으로 폼전송 한다는 것을 알려준다.
 public class FileUploadServlet extends HttpServlet {
 
 	private static final String UPLOAD_PATH = "d:\\picture\\";
 	private Logger logger = LoggerFactory.getLogger(FileUploadServlet.class); // logger를 사용하는 클래스를 인자로 넣는다.
-	
 	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,9 +44,13 @@ public class FileUploadServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String uploadFile = request.getParameter("uploadFile");
 
+		
+						Collection<Part> parts = request.getParts();
+						
 		// part 정보확인
 		// request.getPart(name);
 		// request.getParts();
+						
 
 		/*
 		 * Collection<Part> parts = request.getParts();
@@ -73,6 +75,7 @@ public class FileUploadServlet extends HttpServlet {
 		if(uploadFilePart.getSize()>0) { //파일의 크기가 0보다 클때만 파일을 작성
 		//첨부파일 파일명
 		String filename = PartUtil.getFileNameFromPart(contentDisposition);
+		
 		String uuidFilename = UUID.randomUUID().toString();
 		//uploadFilePart.write(UPLOAD_PATH + uuidFilename);
 		
