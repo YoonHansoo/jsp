@@ -31,7 +31,6 @@ public class UserFormController extends HttpServlet {
 	public void init() throws ServletException {
 		 userService = new UserServiceImpl();
 	}
-
 	/**
 	 * Method : doGet
 	 * 작성자 : Hansoo
@@ -44,7 +43,7 @@ public class UserFormController extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	req.getRequestDispatcher("/user/userForm.jsp").forward(req, resp);
+	req.getRequestDispatcher("/post/postForm.jsp").forward(req, resp);
 		
 	}
 

@@ -126,6 +126,7 @@ ${rangersList.get(i).name} / ${rangersList.get(i).alias} / ${rangersList.get(i).
 
 	pageContext.setAttribute("map", map);
 %>
+	${map.ranger1} <br/>
 	<c:forEach items="${map}" var="entry">
 	${entry.key} / ${entry.value }<br/>
 	</c:forEach>

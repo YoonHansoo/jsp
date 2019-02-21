@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,79 +38,90 @@
 
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h1 class="page-header">사용자 정보조회</h1>
-				
-			 <form id="frm" action="${pageContext.request.contextPath }/userForm" method="post" class="form-horizontal" role="form"
-			 	enctype="multipart/form-data"><!-- 디비값이 변경되면 post-->
-			  <div class="form-group">
-			  
-                  <label for="userNm" class="col-sm-3 control-label">사진</label>
-                  <div class="col-sm-5">
-                        <input type="file" class="form-control" id="profile" name="profile" placeholder="사진">
-                  </div>
-               </div>
-			 
-			 
-               <div class="form-group">
-                  <label for="userNm" class="col-sm-3 control-label">사용자 아이디</label>
-                  <div class="col-sm-5">
-                        <input type="text" class="form-control" id="userId" name="userId" placeholder="사용자 아이디">
-                  </div>
-               </div>
 
-               <div class="form-group">
-                  <label for="userNm" class="col-sm-3 control-label">사용자 이름</label>
-                  <div class="col-sm-5">
-                        <input type="text" class="form-control" id="userNm" name="userNm" placeholder="사용자 이름" >
-                  </div>
-               </div>
+				<form id="frm" action="${pageContext.request.contextPath }/userForm"
+					method="post" class="form-horizontal" role="form"
+					enctype="multipart/form-data">
+					<!-- 디비값이 변경되면 post-->
+					<div class="form-group">
 
-               <div class="form-group">
-                  <label for="userNm" class="col-sm-3 control-label">별명</label>
-                  <div class="col-sm-5">
-                     <input type="text" class="form-control" id="alias"   name="alias" placeholder="별명" >
-                  </div>
-               </div>
-               
-               <div class="form-group">
-                  <label for="userNm" class="col-sm-3 control-label">주소1</label>
-                  <div class="col-sm-5">
-                     <input type="text" readonly class="form-control" id="addr1"   name="addr1" placeholder="주소" >
-                  </div>
-               </div>
-               
-               <div class="form-group">
-                  <label for="userNm" class="col-sm-3 control-label">주소2</label>
-                  <div class="col-sm-5">
-                     <input type="text" class="form-control" id="addr2"   name="addr2" placeholder="상세주소" >
-                  </div>
-               </div>
-               
-               <div class="form-group">
-                  <label for="userNm" class="col-sm-3 control-label">우편번호</label>
-                  <div class="col-sm-4">
-                     <input type="text" readonly class="form-control" id="zipcode"   name="zipcode" placeholder="우편번호" >
-                  </div>
-                  <div class="col-sm-3">
-                     <button id="zipcodeBtn" type="button" class="btn btn-default">우편 검색</button>
-                  </div>
-               </div>
-               
-               
-               <div class="form-group">
-                  <label for="userNm" class="col-sm-3 control-label">Password</label>
-                  <div class="col-sm-5">
-                     <input type="password" class="form-control" id="pass"   name="pass">
-                  </div>
-               </div>
-               
-             
+						<label for="userNm" class="col-sm-3 control-label">사진</label>
+						<div class="col-sm-5">
+							<input type="file" class="form-control" id="profile"
+								name="profile" placeholder="사진">
+						</div>
+					</div>
 
-               <div class="form-group">
-                  <div class="col-sm-offset-3 col-sm-9">
-                     <button type="button" id="regBtn" class="btn btn-default">사용자 등록</button>
-                  </div>
-               </div>
-            </form>
+
+					<div class="form-group">
+						<label for="userNm" class="col-sm-3 control-label">사용자 아이디</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="userId" name="userId"
+								placeholder="사용자 아이디">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="userNm" class="col-sm-3 control-label">사용자 이름</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="userNm" name="userNm"
+								placeholder="사용자 이름">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="userNm" class="col-sm-3 control-label">별명</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="alias" name="alias"
+								placeholder="별명">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="userNm" class="col-sm-3 control-label">주소1</label>
+						<div class="col-sm-5">
+							<input type="text" readonly class="form-control" id="addr1"
+								name="addr1" placeholder="주소">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="userNm" class="col-sm-3 control-label">주소2</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="addr2" name="addr2"
+								placeholder="상세주소">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="userNm" class="col-sm-3 control-label">우편번호</label>
+						<div class="col-sm-4">
+							<input type="text" readonly class="form-control" id="zipcode"
+								name="zipcode" placeholder="우편번호">
+						</div>
+						<div class="col-sm-3">
+							<button id="zipcodeBtn" type="button" class="btn btn-default">우편
+								검색</button>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="userNm" class="col-sm-3 control-label">Password</label>
+						<div class="col-sm-5">
+							<input type="password" class="form-control" id="pass" name="pass">
+						</div>
+					</div>
+
+
+
+					<div class="form-group">
+						<div class="col-sm-offset-3 col-sm-9">
+							<button type="button" id="regBtn" class="btn btn-default">사용자
+								등록</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -122,10 +133,10 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-		
+
 	<!--다음 api사용  -->
-		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-		<script>
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script>
 		$(document).ready(function(){
 			
 			//javascript 에서 비교
@@ -213,7 +224,7 @@
 		});
     		
 </script>
-		
+
 
 </body>
 </html>
