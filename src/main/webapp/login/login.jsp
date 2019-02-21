@@ -39,7 +39,7 @@
 		<form class="form-signin" action="/login" method="post">
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<label for="inputEmail" class="sr-only">Email address</label> <input
-				name="userId" type="text" value="" id="userId" class="form-control"
+				name="userId" type="text" value="brown" id="userId" class="form-control"
 				placeholder="User Id" required autofocus> <label
 				for="inputPassword" class="sr-only">Password</label> <input
 				name="password" type="password" value="brown1234" id="inputPassword"
@@ -61,10 +61,12 @@
 </body>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/cookieUtil.js"></script>
-<script src="<%=request.getContextPath()%>/js/js.cookie.js"></script>
+<script src="${cp}/js/cookieUtil.js"></script>
+<script src="${cp}/js/js.cookie.js"></script>
 <script>
 	$(document).ready(function() {
+		
+		console.log("cp:"+ "${cp}");
 		//userId cookie값이 있을 경우 userId input에 설정
 		if(Cookies.get("userId")){
 			$("#userId").val(Cookies.get("userId"));

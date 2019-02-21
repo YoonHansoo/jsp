@@ -28,7 +28,7 @@
 	2.select box option태그가 요청한 로케일로 선택이 되도록 설정
 	3.만약 로케일 파라미터가 없을경우 기본값은 ko
  --%>
-	<form id="frm" action=" ${pageContext.servletContext.contextPath}/selectLang" method="get">		
+	<form id="frm" action=" ${cp}/selectLang" method="get">		
 	<select id="select" name ="select">
 		<option value="ko">한국어</option>
 		<option value="ja">日本の</option>

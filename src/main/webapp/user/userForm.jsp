@@ -39,7 +39,7 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h1 class="page-header">사용자 정보조회</h1>
 
-				<form id="frm" action="${pageContext.request.contextPath }/userForm"
+				<form id="frm" action="${cp }/userForm"
 					method="post" class="form-horizontal" role="form"
 					enctype="multipart/form-data">
 					<!-- 디비값이 변경되면 post-->

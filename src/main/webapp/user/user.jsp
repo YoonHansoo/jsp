@@ -42,7 +42,7 @@
 				<h1 class="page-header">사용자 정보조회</h1>
 				
 				<form id="frm" class="form-horizontal" role="form" method="get"
-					action="${pageContext.request.contextPath}/userModifyForm">
+					action="${cp}/userModifyForm">
 
 					<input type="hidden" name="userId" value="${userVo.userId}">
 					
@@ -50,13 +50,13 @@
 						<label for="userId" class="col-sm-3 control-label">사진</label>
 						<div class="col-sm-9">
 						
-						<img src="${pageContext.request.contextPath}/profileImg?userId=${userVo.userId}"/>
+						<img src="${cp}/profileImg?userId=${userVo.userId}"/>
 						<%-- <c:choose>
 							<c:when test="${userVo.filename eq null}">
-							<img src="${pageContext.request.contextPath}/upload/noimg.png" />
+							<img src="${cp}/upload/noimg.png" />
 							</c:when>
 						<c:otherwise>
-							<img src="${pageContext.request.contextPath}/upload/${userVo.filename}" />
+							<img src="${cp}/upload/${userVo.filename}" />
 						</c:otherwise>
 						</c:choose> --%>
 						</div>

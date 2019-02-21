@@ -38,12 +38,12 @@
 
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h1 class="page-header">사용자 정보수정</h1>
-			 <form id="frm" action="${pageContext.request.contextPath }/userModifyForm" method="post" class="form-horizontal" role="form" enctype="multipart/form-data"><!-- 디비값이 변경되면 post-->
+			 <form id="frm" action="${cp }/userModifyForm" method="post" class="form-horizontal" role="form" enctype="multipart/form-data"><!-- 디비값이 변경되면 post-->
 			 
 			 <div class="form-group">
                   <label for="userNm" class="col-sm-3 control-label">사진</label>
                   <div class="col-sm-5">
-                  	<img src="${pageContext.request.contextPath}/profileImg?userId=${userVo.userId}"/> 
+                  	<img src="${cp}/profileImg?userId=${userVo.userId}"/> 
                         <input type="file" class="form-control" id="profile" name="profile" placeholder="사진">
                   </div>
                </div>

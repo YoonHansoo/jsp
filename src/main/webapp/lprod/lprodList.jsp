@@ -86,7 +86,7 @@
 						</a></li>
 						</c:when>
 						<c:otherwise>
-						<li><a href="${pageContext.servletContext.contextPath}/lprodList" aria-label="Previous">
+						<li><a href="${cp}/lprodList" aria-label="Previous">
 							 	<span aria-hidden="true">&laquo;</span> 
 						</a></li>
 						</c:otherwise>					
@@ -100,7 +100,7 @@
 							<c:set var="active" value="active"/>
 						</c:if>			
 							<li class ="${active}">
-							<a href="${pageContext.servletContext.contextPath}lprodList?page=${i}">${i}</a></li>
+							<a href="${cp}lprodList?page=${i}">${i}</a></li>
 					</c:forEach>
 					
 					<c:choose>
@@ -113,7 +113,7 @@
 						</c:when>
 						<c:otherwise>
 								<li>
-								<a href="${pageContext.servletContext.contextPath}/lprodList?page=${lastPage}"aria-label="Next"> 
+								<a href="${cp}/lprodList?page=${lastPage}"aria-label="Next"> 
 								<span aria-hidden="true">&raquo;</span>
 						</a></li>
 						
@@ -175,7 +175,7 @@
 	});
 </script>
 
-<form id="frm" action="${pageContext.servletContext.contextPath}/prod" method="get">
+<form id="frm" action="${cp}/prod" method="get">
 	<input type="hidden" name="lprodGu" id="lprodGu" />
 </form>
 </body>

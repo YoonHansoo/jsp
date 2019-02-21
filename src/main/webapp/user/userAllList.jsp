@@ -131,7 +131,7 @@
 	
 
 
-	<form id="frm" action="${pageContext.servletContext.contextPath}/user" method="get">
+	<form id="frm" action="${cp}/user" method="get">
 		<input type="hidden" name="userId" id="userId" />
 	</form>
 </body>

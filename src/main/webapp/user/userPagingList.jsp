@@ -67,7 +67,7 @@
 						</tbody>
 					</table>
 					
-					<form action="${pageContext.request.contextPath}/userForm" method="get">
+					<form action="${cp}/userForm" method="get">
 					   <button type="submit" class="btn btn-default">사용자 등록</button>
 					</form>
 				</div>
@@ -94,7 +94,7 @@
 							</c:when>
 							<c:otherwise>
 								<li><a
-									href="${pageContext.servletContext.contextPath}/userPagingList"
+									href="${cp}/userPagingList"
 									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 								</a></li>
 							</c:otherwise>
@@ -107,7 +107,7 @@
 								<%--현재 페이지일 때 활성화를 위해서--%>
 							</c:if>
 							<li class="${active}"><a
-								href="${pageContext.servletContext.contextPath}/userPagingList?page=${i}">${i}</a>
+								href="${cp}/userPagingList?page=${i}">${i}</a>
 							</li>
 						</c:forEach>
 
@@ -119,7 +119,7 @@
 							</c:when>
 							<c:otherwise>
 								<li><a
-									href="${pageContext.servletContext.contextPath}/userPagingList?page=${lastPage}"
+									href="${cp}/userPagingList?page=${lastPage}"
 									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 								</a></li>
 							</c:otherwise>
@@ -183,7 +183,7 @@
 
 		});
 	</script>
-	<form id="frm" action="${pageContext.servletContext.contextPath}/user"
+	<form id="frm" action="${cp}/user"
 		method="get">
 		<input type="hidden" name="userId" id="userId" />
 	</form>
