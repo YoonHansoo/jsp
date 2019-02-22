@@ -8,8 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import kr.or.ddit.db.mybatis.MybatisSqlSessionFactory;
-import kr.or.ddit.db.mybatis.MybatisSqlSessionFactoryTest;
-import kr.or.ddit.encrypt.kisa.seed.KISA_SEED_CBC;
 import kr.or.ddit.encrypt.kisa.sha256.KISA_SHA256;
 import kr.or.ddit.user.dao.IUserDao;
 import kr.or.ddit.user.dao.UserDaoImpl;
