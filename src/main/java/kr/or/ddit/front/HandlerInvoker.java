@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 */
 public class HandlerInvoker {
    public String invoke(HttpServletRequest req, HttpServletResponse resp,CommonController controller){   //스프링 환경을 위해 설명하기 위한것 
-	   	String viewinfo = controller.process(req, resp);
+	   String viewinfo = controller.process(req, resp);
       return viewinfo;
    }
 }
