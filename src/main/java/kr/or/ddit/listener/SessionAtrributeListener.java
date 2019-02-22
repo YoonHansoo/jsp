@@ -18,6 +18,7 @@ public class SessionAtrributeListener implements HttpSessionAttributeListener{
 	@Override
 	public void attributeRemoved(HttpSessionBindingEvent event) {
 		logger.debug("SessionAttributeListener removed: {} : {}," ,event.getName(),event.getValue());
+	
 	}
 
 	@Override

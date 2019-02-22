@@ -60,4 +60,8 @@
     <listener-class>kr.or.ddit.listener.CotextPathListener</listener-class>
   </listener>
   
+  <listener>
+    <listener-class>kr.or.ddit.listener.CurrentUserListener</listener-class>
+  </listener>
+  
 </web-app>

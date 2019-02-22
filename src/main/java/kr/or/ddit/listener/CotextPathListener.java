@@ -13,12 +13,9 @@ public class CotextPathListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		logger.debug("ServletContextEvent contextInitialized");
-		
-		
 		//contextPath 값을 짧은 이름으로 application scope에 저장
 		ServletContext application = sce.getServletContext();
 		String contextPath = application.getContextPath();
-		
 		//$앞으로는 {cp}를
 		//${cp}로 줄여 쓸 수 있음
 		application.setAttribute("cp", contextPath);

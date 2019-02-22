@@ -3,7 +3,18 @@ package kr.or.ddit.user.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UserVo {
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionBindingEvent;
+import javax.servlet.http.HttpSessionBindingListener;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+public class UserVo implements HttpSessionBindingListener {
+	
+	private Logger logger = LoggerFactory.getLogger(UserVo.class);
+	
 	private String userId;	 //사용자 아이디
 	private String userNm; //사용자 이름
 	private String alias; //별명
@@ -109,6 +120,20 @@ public class UserVo {
 		return "UserVo [userId=" + userId + ", userNm=" + userNm + ", alias=" + alias + ", pass=" + pass + ", addr1="
 				+ addr1 + ", addr2=" + addr2 + ", zipcode=" + zipcode + ", reg_dt=" + reg_dt + ", filename=" + filename
 				+ ", realFilename=" + realFilename + "]";
+	}
+
+	@Override
+	public void valueBound(HttpSessionBindingEvent event) {
+		HttpSession session = event.getSession();
+		logger.debug("userVo valueBound : {}", session.getId());
+		
+	}
+
+	@Override
+	public void valueUnbound(HttpSessionBindingEvent event) {
+		HttpSession session = event.getSession();
+		logger.debug("userVo valueUnloBound : {}", session.getId());
+		
 	}
 
 	
