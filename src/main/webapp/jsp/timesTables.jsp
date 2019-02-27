@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table border="1" border-collapse: collapse>
 
+
+	<table border="1" border-collapse: collapse>
 		<%
 			for (int i = 2; i <= 9; i++) {
 		%>

@@ -1,0 +1,27 @@
+<html>
+<head></head>
+<body>
+	velocity.vm
+	
+	ranger1 : $rangers
+	
+	<table>
+		<thead>
+		<tr>
+			<th>이름</th>
+		</tr>
+		</thead>
+		
+		<tbody>
+		
+		#foreach($ranger in $rangers)
+		<tr>
+			<td>$ranger</td>
+		<tr>
+		
+		#end		
+		
+		</tbody>
+	</table>
+</body>
+</html>
